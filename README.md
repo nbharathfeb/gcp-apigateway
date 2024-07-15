@@ -38,9 +38,9 @@ curl -i -X DELETE "http://localhost:8080?username=ted"
 To deploy the function with an HTTP trigger, run the following command in the helloworld-gradle directory:
 ```
 gcloud auth login
-gcloud config set project PROJECT_ID
-gcloud functions deploy user-function-manual --region europe-west1 --entry-point functions.UserFunction --runtime java17 --trigger-http --memory 512MB --timeout 90 --max-instances 1 --service-account user-function@api-gateway-360218.iam.gserviceaccount.com
-gcloud functions add-iam-policy-binding user-function-manual --region=europe-west1 --member="serviceAccount:user-function@api-gateway-360218.iam.gserviceaccount.com" --role="roles/cloudfunctions.invoker"
+gcloud config set project bharath-project-428310
+gcloud functions deploy user-function-manual --region us-central1 --entry-point functions.UserFunction --runtime python3.7 --trigger-http --memory 512MB --timeout 90 --max-instances 1 --service-account apigateway-test@bharath-project-428310.iam.gserviceaccount.com
+gcloud functions add-iam-policy-binding user-function-manual --region=us-central1 --member="serviceAccount:user-function@api-gateway-360218.iam.gserviceaccount.com" --role="roles/cloudfunctions.invoker"
 ```
 where user-function-manual is the registered name by which your function will be identified in the console, and --entry-point specifies your function's fully qualified class name (FQN).
 
@@ -87,10 +87,10 @@ gcloud services enable user-api-1yw8dyurd1ka5.apigateway.api-gateway-360218.clou
 https://cloud.google.com/docs/authentication/api-keys#creating_an_api_key
 ## Test you API
 ```
-curl -i "https://apigateway-eu-3t8e894t.ew.gateway.dev/v1/user"
-curl -i -X POST -H "Content-Type: application/json" "https://apigateway-eu-3t8e894t.ew.gateway.dev/v1/user?key=" -d "{\"username\": \"ted\",\"password\": \"secret\",\"firstname\": \"Ted\",\"lastname\": \"Baker\",\"email\": \"tedbaker@example.com\"}"
-curl -i -X PUT -H "Content-Type: application/json" "https://apigateway-eu-3t8e894t.ew.gateway.dev/v1/user?username=ted&key=" -d "{\"firstname\": \"Teddy\",\"lastname\": \"Norman\",\"email\": \"tnorman@example.com\"}"
-curl -i -X DELETE "https://apigateway-eu-3t8e894t.ew.gateway.dev/v1/user?username=bob&key="
+curl -i "https://hello-apigateway-1o48rtxe.uc.gateway.dev/v1/user"
+curl -i -X POST -H "Content-Type: application/json" "https://hello-apigateway-1o48rtxe.uc.gateway.dev/v1/user?key=AIzaSyChTGbEFjDLc2KWiXZdSthCRHFQWHpoRvo" -d "{\"username\": \"ted\",\"password\": \"secret\",\"firstname\": \"Ted\",\"lastname\": \"Baker\",\"email\": \"tedbaker@example.com\"}"
+curl -i -X PUT -H "Content-Type: application/json" "https://hello-apigateway-1o48rtxe.uc.gateway.dev/v1/user?username=ted&key=AIzaSyChTGbEFjDLc2KWiXZdSthCRHFQWHpoRvo" -d "{\"firstname\": \"Teddy\",\"lastname\": \"Norman\",\"email\": \"tnorman@example.com\"}"
+curl -i -X DELETE "https://hello-apigateway-1o48rtxe.uc.gateway.dev/v1/user?username=bob&key=AIzaSyChTGbEFjDLc2KWiXZdSthCRHFQWHpoRvo"
 ```
 ## Cleanup
 ```

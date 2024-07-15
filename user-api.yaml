@@ -3,7 +3,7 @@ info:
   description: User API sample
   version: 1.0.6
   title: User API
-host: hello-api-123.apigateway.bharath-project-428310.cloud.goog
+host: user-api.apigateway.bharath-project-428310.cloud.goog
 basePath: /v1
 schemes:
   - https
@@ -11,7 +11,7 @@ security:
   - api_key: []
 x-google-backend:
   address: >-
-    https://us-central1-bharath-project-428310.cloudfunctions.net/hello-function
+    https://us-central1-bharath-project-428310.cloudfunctions.net/UserFunction
 x-google-management:
   metrics:
     - name: "get-requests"
